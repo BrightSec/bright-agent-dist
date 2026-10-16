@@ -457,7 +457,7 @@
       L.push(`      - name: Resolve steering PR (refuse forks)`);
       L.push(`        id: steer`);
       L.push(`        if: github.event_name == 'issue_comment'`);
-      L.push(`        uses: actions/github-script@v7`);
+      L.push(`        uses: actions/github-script@v8`);
       L.push(`        with:`);
       L.push(`          script: |`);
       L.push(`            const { data: pr } = await github.rest.pulls.get({`);
@@ -533,7 +533,7 @@
       const roleArn = String(s.awsRoleArn || "").trim() || "REPLACE_WITH_AWS_ROLE_ARN";
       const region = String(s.awsRegion || "").trim() || "us-east-1";
       L.push(`      - name: Configure AWS credentials through GitHub OIDC`);
-      L.push(`        uses: aws-actions/configure-aws-credentials@v4`);
+      L.push(`        uses: aws-actions/configure-aws-credentials@v6`);
       L.push(`        with:`);
       L.push(`          role-to-assume: ${yamlScalar(roleArn)}`);
       L.push(`          aws-region: ${yamlScalar(region)}`);
@@ -606,7 +606,7 @@
       L.push(``);
       L.push(`      - name: Upload Bright Agent logs`);
       L.push(`        if: always()`);
-      L.push(`        uses: actions/upload-artifact@v4`);
+      L.push(`        uses: actions/upload-artifact@v7`);
       L.push(`        with:`);
       L.push(`          name: bright-agent-logs`);
       L.push(`          path: ~/.bright-agent/logs/`);
@@ -616,7 +616,7 @@
       L.push(``);
       L.push(`      - name: Upload Bright Agent LLM turn dumps`);
       L.push(`        if: always()`);
-      L.push(`        uses: actions/upload-artifact@v4`);
+      L.push(`        uses: actions/upload-artifact@v7`);
       L.push(`        with:`);
       L.push(`          name: bright-agent-turn-dumps`);
       L.push(`          path: ${turnDumpDir(s)}/`);
@@ -1099,7 +1099,7 @@
         const modelListPermission = family === "openai"
           ? ` Grant <code>bedrock-mantle:ListModels</code> when preflight should verify model availability.`
           : "";
-        out += `<div class="callout info"><span class="h">AWS role trust and permissions</span>The workflow adds job-wide <code>id-token: write</code> and uses <code>aws-actions/configure-aws-credentials@v4</code>. Configure the IAM role trust policy with audience <code>sts.amazonaws.com</code> and restrict the GitHub <code>sub</code> claim to this repository's pull-request, branch, or protected environment context. Any same-repository code executing in this job — including build tools and the application STAR starts — can request or use this role. For the Bedrock Mantle endpoint, grant <code>bedrock-mantle:CallWithBearerToken</code> so the short-term token can be used and <code>bedrock-mantle:CreateInference</code> on the intended Mantle project.${modelListPermission} Also grant <code>bedrock:InvokeModel</code> and, when needed, <code>bedrock:InvokeModelWithResponseStream</code> for the selected models or inference profiles. Grant no unrelated AWS permissions, and keep the workflow disabled for fork PRs.</div>`;
+        out += `<div class="callout info"><span class="h">AWS role trust and permissions</span>The workflow adds job-wide <code>id-token: write</code> and uses <code>aws-actions/configure-aws-credentials@v6</code>. Configure the IAM role trust policy with audience <code>sts.amazonaws.com</code> and restrict the GitHub <code>sub</code> claim to this repository's pull-request, branch, or protected environment context. Any same-repository code executing in this job — including build tools and the application STAR starts — can request or use this role. For the Bedrock Mantle endpoint, grant <code>bedrock-mantle:CallWithBearerToken</code> so the short-term token can be used and <code>bedrock-mantle:CreateInference</code> on the intended Mantle project.${modelListPermission} Also grant <code>bedrock:InvokeModel</code> and, when needed, <code>bedrock:InvokeModelWithResponseStream</code> for the selected models or inference profiles. Grant no unrelated AWS permissions, and keep the workflow disabled for fork PRs.</div>`;
         out += `<div class="callout info"><span class="h">Model API family</span>The generated workflow selects the API client from <code>AI_MODEL</code>: <code>anthropic.*</code> models use Bedrock's native Anthropic Messages route with IAM Bearer authentication, while <code>openai.*</code> models use the OpenAI-compatible Chat Completions route. Keep every model in an escalation chain within the same API family.</div>`;
         out += t.manual
           ? `<p>The browser cannot test GitHub OIDC or assume the AWS role. Commit the workflow, choose <b>Run workflow</b>, enable the <code>preflight</code> input, and run it to validate credentials and model access without scanning.</p>`
