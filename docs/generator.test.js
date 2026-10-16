@@ -609,7 +609,7 @@ test("debug on: every platform captures ~/.bright-agent/logs as a bright-agent-l
 });
 test("github: debug uploads logs with upload-artifact and if: always()", () => {
   const y = G.generateGitHub(st({ debug: true }));
-  assert.match(y, /uses: actions\/upload-artifact@v4/);
+  assert.match(y, /uses: actions\/upload-artifact@v7/);
   assert.match(y, /name: bright-agent-logs/);
   assert.match(y, /path: ~\/\.bright-agent\/logs\//);
   assert.match(y, /if-no-files-found: ignore/);
@@ -737,7 +737,7 @@ test("github: turn dumps upload as their own artifact, always, tolerating absenc
   assert.match(y, /name: bright-agent-turn-dumps/);
   assert.match(y, /path: \$\{\{ runner\.temp \}\}\/bright-agent-turn-dumps\//);
   // both artifacts present, each guarded by if: always()
-  assert.equal((y.match(/uses: actions\/upload-artifact@v4/g) || []).length, 2);
+  assert.equal((y.match(/uses: actions\/upload-artifact@v7/g) || []).length, 2);
   assert.equal((y.match(/if-no-files-found: ignore/g) || []).length, 2);
 });
 test("gitlab: turn dumps are copied into CI_PROJECT_DIR and added to artifact paths", () => {
@@ -1269,7 +1269,7 @@ test("configurationErrors accepts Claude with OIDC and rejects expressions, cont
 test("github Bedrock OIDC YAML selects the Anthropic bearer route and omits static tokens", () => {
   const y = G.generateGitHub(bedrockOidc());
   assert.match(y, /id-token: write/);
-  assert.match(y, /uses: aws-actions\/configure-aws-credentials@v4/);
+  assert.match(y, /uses: aws-actions\/configure-aws-credentials@v6/);
   assert.match(y, /role-to-assume: "arn:aws:iam::123456789012:role\/BrightAgentRole"/);
   assert.match(y, /aws-region: us-east-1/);
   assert.match(y, /role-session-name: bright-agent-\$\{\{ github\.run_id \}\}/);
