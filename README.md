@@ -6,7 +6,7 @@ autonomously analyzes, builds, scans, validates, and fixes security
 vulnerabilities in your applications.
 
 This repository hosts the **prebuilt binaries** only. Grab the latest from the
-[Releases page](https://github.com/NeuraLegion/bright-agent-dist/releases/latest).
+[Releases page](https://github.com/BrightSec/bright-agent-dist/releases/latest).
 
 ## Download
 
@@ -24,7 +24,7 @@ Each binary ships with a matching `.sha256` checksum file.
 ```bash
 VERSION=v0.1.0
 ASSET=bright-agent-linux-x64
-base="https://github.com/NeuraLegion/bright-agent-dist/releases/download/${VERSION}"
+base="https://github.com/BrightSec/bright-agent-dist/releases/download/${VERSION}"
 
 curl -fsSL -o "$ASSET"        "$base/$ASSET"
 curl -fsSL -o "$ASSET.sha256" "$base/$ASSET.sha256"
@@ -73,7 +73,7 @@ INFERENCE_TOKEN="your-inference-token" \
 
 | Variable            | Required | Description                                                                                  |
 | ------------------- | -------- | -------------------------------------------------------------------------------------------- |
-| `FUZZER_BIN`        | No       | Explicit path to a `fuzzer` binary. If unset, the agent looks for `fuzzer` on `PATH`, then downloads the static linux-x64 release from `NeuraLegion/fuzzer-dist` (sha256-verified) |
+| `FUZZER_BIN`        | No       | Explicit path to a `fuzzer` binary. If unset, the agent looks for `fuzzer` on `PATH`, then downloads the static linux-x64 release from `BrightSec/fuzzer-dist` (sha256-verified) |
 | `FUZZER_VERSION`    | No       | Fuzzer release to download. Defaults to `latest`; set e.g. `0.2.2` to pin                    |
 | `FUZZER_EPOCHS`     | No       | Max evolution epochs per fuzzed function. If unset, sized per-function from the LLM complexity rating (about 150 to 800); setting it overrides that |
 | `FUZZER_TIMEOUT`    | No       | Per-input timeout in seconds; a hang past this is a finding (default: `5`)                   |
@@ -123,7 +123,7 @@ runner notes. Run scans on a schedule or on demand — not on every push.
 blow-ups) in code reachable past input validation. It is self-contained: no app
 startup, no Bright cloud, no repeater, no auth, and no scan loop. It resolves the
 evolutionary fuzzer binary (`FUZZER_BIN`, then `fuzzer` on `PATH`, then downloads
-the static linux-x64 release from `NeuraLegion/fuzzer-dist`, sha256-verified),
+the static linux-x64 release from `BrightSec/fuzzer-dist`, sha256-verified),
 builds a per-function Docker harness, and security-triages the faults so the PR
 carries genuine risks with a reproducing payload. Requires Docker and a Linux x64
 host.
