@@ -109,8 +109,8 @@
 
   function dlBase(s) {
     return (s.version || "").trim()
-      ? `https://github.com/NeuraLegion/bright-agent-dist/releases/download/${s.version.trim()}`
-      : `https://github.com/NeuraLegion/bright-agent-dist/releases/latest/download`;
+      ? `https://github.com/BrightSec/bright-agent-dist/releases/download/${s.version.trim()}`
+      : `https://github.com/BrightSec/bright-agent-dist/releases/latest/download`;
   }
 
   function activeTriggers(s) {
