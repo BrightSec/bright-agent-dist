@@ -34,7 +34,7 @@ jobs:
           command: |
             # Latest release. To pin a version, replace 'latest/download' with
             # 'download/<tag>', e.g. .../releases/download/v0.1.1
-            base="https://github.com/NeuraLegion/bright-agent-dist/releases/latest/download"
+            base="https://github.com/BrightSec/bright-agent-dist/releases/latest/download"
             curl -fsSL -o "/tmp/${ASSET}" "${base}/${ASSET}"
             curl -fsSL -o "/tmp/${ASSET}.sha256" "${base}/${ASSET}.sha256"
             ( cd /tmp && sha256sum -c "${ASSET}.sha256" )

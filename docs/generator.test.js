@@ -60,7 +60,7 @@ test("dlBase uses latest by default", () => {
   assert.match(G.dlBase(st()), /releases\/latest\/download$/);
 });
 test("dlBase pins a version tag", () => {
-  assert.equal(G.dlBase(st({ version: "v0.1.1" })), "https://github.com/NeuraLegion/bright-agent-dist/releases/download/v0.1.1");
+  assert.equal(G.dlBase(st({ version: "v0.1.1" })), "https://github.com/BrightSec/bright-agent-dist/releases/download/v0.1.1");
 });
 test("dlBase trims whitespace in the tag", () => {
   assert.match(G.dlBase(st({ version: "  v2.0.0  " })), /download\/v2\.0\.0$/);

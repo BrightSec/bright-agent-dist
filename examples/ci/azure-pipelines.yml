@@ -93,7 +93,7 @@ steps:
       set -eu
       # Latest release. To pin a version, replace 'latest/download' with
       # 'download/<tag>', e.g. .../releases/download/v0.1.1
-      base="https://github.com/NeuraLegion/bright-agent-dist/releases/latest/download"
+      base="https://github.com/BrightSec/bright-agent-dist/releases/latest/download"
       cd "$(Agent.TempDirectory)"
       curl -fsSL -o "$ASSET" "$base/$ASSET"
       curl -fsSL -o "$ASSET.sha256" "$base/$ASSET.sha256"
