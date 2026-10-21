@@ -2,7 +2,7 @@
 
 Drop-in pipeline templates for running **Bright Agent** in your own CI. Each
 example checks out your repository, downloads the prebuilt binary from
-[Releases](https://github.com/NeuraLegion/bright-agent-dist/releases) (verifying
+[Releases](https://github.com/BrightSec/bright-agent-dist/releases) (verifying
 its checksum), and scans the checked-out tree. The agent opens a pull request
 with verified fixes.
 
@@ -204,7 +204,7 @@ steps:
 
   - name: Download Bright Agent
     run: |
-      curl -sL "https://github.com/NeuraLegion/bright-agent-dist/releases/latest/download/bright-agent-linux-x64" -o "$RUNNER_TEMP/bright-agent"
+      curl -sL "https://github.com/BrightSec/bright-agent-dist/releases/latest/download/bright-agent-linux-x64" -o "$RUNNER_TEMP/bright-agent"
       chmod +x "$RUNNER_TEMP/bright-agent"
 
   - name: Run Bright Agent
