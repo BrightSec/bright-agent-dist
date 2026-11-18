@@ -152,7 +152,7 @@ jobs:
           BRIGHT_STEERING_PR_HEAD: ${{ steps.steer.outputs.head_ref }}
           BRIGHT_STEERING_PR_BASE: ${{ steps.steer.outputs.base_ref }}
           # Optional:
-          # AI_MODEL: gpt-5.4-mini
+          # AI_MODEL: gpt-5.4
           # SCAN_SCOPE: full      # force a full-repo scan even on a PR
           # BRIGHT_DEBUG: "1"
         run: "${{ runner.temp }}/${{ env.ASSET }}"

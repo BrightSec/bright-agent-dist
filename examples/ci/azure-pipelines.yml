@@ -124,7 +124,7 @@ steps:
       BRIGHT_STEERING_PR_HEAD: ${{ parameters.steeringPrHead }}
       BRIGHT_STEERING_PR_BASE: ${{ parameters.steeringPrBase }}
       # Optional:
-      # AI_MODEL: gpt-5.4-mini
+      # AI_MODEL: gpt-5.4
       # SCAN_SCOPE: full      # force a full-repo scan even on a PR
       # BRIGHT_DEBUG: "1"
 
