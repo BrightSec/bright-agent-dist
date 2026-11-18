@@ -623,7 +623,9 @@ function renderForm() {
       bedrockTokenMode ? "AI_MODEL" : "AI_MODEL (optional)",
       bedrockTokenMode
         ? "Required Bedrock model or inference-profile ID. Use one API family per escalation chain; regional Anthropic profiles are supported."
-        : "Single model or a comma-separated escalation chain. Blank = provider default, written into the file.",
+        : S.provider === "openai"
+          ? "Blank = gpt-5.4, written into the file. Model escalation is supported: list models separated by commas and the agent moves to the next one on failure, e.g. gpt-5.4-mini,gpt-5.4"
+          : "Single model or a comma-separated escalation chain. Blank = provider default, written into the file.",
       S.aiModel,
       (v) => { S.aiModel = v; },
       bedrockTokenMode ? "anthropic.claude-… or openai.gpt-oss-120b-1:0" : PROVIDERS[S.provider].model || "provider default",
