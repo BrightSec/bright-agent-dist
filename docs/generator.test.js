@@ -6,6 +6,8 @@ const G = require("./generator.js");
 // Helper: a fresh state with overrides applied.
 function st(overrides = {}) {
   const s = G.defaultState();
+  s.debug = false;
+  s.dumpTurns = false;
   const { triggers, ...rest } = overrides;
   Object.assign(s, rest);
   if (triggers) Object.assign(s.triggers, triggers);
@@ -1373,4 +1375,10 @@ test("non-GitHub stale OIDC state falls back to token generation and is blocked 
   assert.equal(G.usesBedrockOidc(s), false);
   assert.ok(G.configurationErrors(s).length > 0);
   assert.match(G.generateGitLab(s), /INFERENCE_TOKEN/);
+});
+
+test("defaultState enables verbose logging and LLM turn dumps", () => {
+  const s = G.defaultState();
+  assert.equal(s.debug, true);
+  assert.equal(s.dumpTurns, true);
 });
